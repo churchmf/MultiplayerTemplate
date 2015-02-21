@@ -27,10 +27,10 @@ public class NetworkManager : MonoBehaviour
 		{
 				Transform newPlayer = Network.Instantiate (playerPrefab, playerPrefab.position, playerPrefab.rotation, 0) as Transform;
 				
-				if (Network.isServer) {
-						var rigidBody = newPlayer.gameObject.AddComponent<Rigidbody> ();
-						rigidBody.freezeRotation = true;
-				}
+				//if (Network.isServer) {
+				//		var rigidBody = newPlayer.gameObject.AddComponent<Rigidbody> ();
+				//		rigidBody.freezeRotation = true;
+				//}
 
 				if (thisPlayer != Network.player) {
 						networkView.RPC ("EnableCamera", thisPlayer, newPlayer.networkView.viewID);
@@ -44,7 +44,7 @@ public class NetworkManager : MonoBehaviour
 		{
 				GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 				foreach (GameObject playerObject in players) {
-							if (playerObject.networkView.viewID == viewID) {
+						if (playerObject.networkView && playerObject.networkView.viewID == viewID) {
 								playerObject.GetComponent<NetworkMovement> ().haveControl = true;
 								Transform myCamera = playerObject.transform.Find ("Camera");
 								myCamera.camera.enabled = true;
