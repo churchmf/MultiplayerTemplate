@@ -16,10 +16,7 @@ public class NetworkMovement : MonoBehaviour
 			float vert = Input.GetAxis ("Vertical");
 			float horiz = Input.GetAxis ("Horizontal");
 
-//			if (Network.isServer) {
-				MovePlayer (vert, horiz);
-//			} else {
-//			}
+			MovePlayer (vert, horiz);
 			if (Network.isClient) {
 				networkView.RPC ("MovePlayer", RPCMode.Server, vert, horiz);
 			}
@@ -35,12 +32,5 @@ public class NetworkMovement : MonoBehaviour
 		myVelocity.z = newVelocity.z;
 
 		rigidbody.velocity = myVelocity;
-//		networkView.RPC ("UpdatePlayer", RPCMode.OthersBuffered, transform.position);
 	}
-
-//	[RPC]
-//	void UpdatePlayer (Vector3 playerPos)
-//	{
-//		transform.position = playerPos;
-//	}
 }

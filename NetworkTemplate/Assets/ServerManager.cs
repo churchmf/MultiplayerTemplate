@@ -4,7 +4,8 @@ using System.Collections;
 /// <summary>
 /// Server manager handles the hosting and connecting to the game server. Provides a basic GUI for starting, finding, and connecting to games.
 /// </summary>
-public class ServerManager : MonoBehaviour {
+public class ServerManager : MonoBehaviour
+{
 	string registeredName = "somekindofuniquename";
 	float refreshRequestLength = 3.0f;
 	HostData[] hostData;
